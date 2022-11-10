@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: API Gateway
+title: API Gateway HTTP API
 ---
 
 ## Trigger AWS Lambda with API Gateway HTTP API
