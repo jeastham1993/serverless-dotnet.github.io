@@ -1,0 +1,8 @@
+{
+  "label": "Build Patterns",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Step by Step guides to building common serverless patterns."
+  }
+}
