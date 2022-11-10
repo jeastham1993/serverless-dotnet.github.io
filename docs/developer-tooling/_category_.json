@@ -1,0 +1,8 @@
+{
+  "label": "Developer Tooling",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about the different tools available to build serverless applications."
+  }
+}

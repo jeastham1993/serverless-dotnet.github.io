@@ -1,0 +1,8 @@
+{
+  "label": "Event Sources",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to develop against all of the available event sources you can use to trigger your Lambda functions."
+  }
+}

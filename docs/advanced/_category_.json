@@ -1,0 +1,8 @@
+{
+  "label": "Advanced Concepts",
+  "position": 11,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about the more advanced concepts when building serverless applications with .NET."
+  }
+}
