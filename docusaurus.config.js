@@ -12,7 +12,7 @@ const config = {
   title: 'Serverless .NET',
   tagline: 'Build serverless applications on AWS with .NET',
   url: 'https://serverlessdotnet.dev',
-  baseUrl: '/',
+  baseUrl: '/serverless-dotnet.github.io/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
