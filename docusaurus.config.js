@@ -80,10 +80,6 @@ const config = {
       }],
       navbar: {
         title: 'Serverless .NET',
-        logo: {
-          alt: 'Serverless .NET Logo',
-          src: 'img/logo.svg',
-        },
         items: [
           {
             type: 'doc',
