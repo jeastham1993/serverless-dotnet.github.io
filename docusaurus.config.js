@@ -106,6 +106,15 @@ const config = {
               },
             ],
           },
+          {
+            title: 'Built by @plantpowerjames',
+            items: [
+              {
+                label: '@plantpowerjames',
+                to: 'https://twitter.com/plantpowerjames',
+              },
+            ],
+          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Serverless .NET. Built with Docusaurus.`,
       },
