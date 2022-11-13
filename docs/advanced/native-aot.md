@@ -11,7 +11,7 @@ One of the benefits of native AOT is the start-up speed. As the application is p
 
 There are some limitations to native AOT, the biggest being the lack of support for run-time code generation. This has an impact on any systems that use unconstrained reflection. Both System.Text.Json and Newtonsoft.Json rely heavily on reflection to function, meaning any JSON (de)serialiazation using either of these libraryies will require changes.
 
-Let's dive into the requirements for running native AOT applications on AWS Lambda.
+Let's dive into how you can run native AOT applications on AWS Lambda.
 
 ## AWS Tooling
 
@@ -41,7 +41,7 @@ Open up the project in the IDE of your choice and let's have a look at the code.
 
 ## Function Code
 
-Native AOT compiles application code down to a single binary. This means the application entry-point needs to be a _`static Main()`_ method. This examples uses the _`LambdaBootstrapBuilder`_ class that comes from the _`Amazon.Lambda.RuntimeSupport`_ Nuget package. The _`.Create`_ method bootstrams the Lambda runtime, passing in the actual FunctionHandler method as well as a serializer to use. The _`.RunAsync()`_ method makes the function ready to receive requests.
+Native AOT compiles application code down to a single binary. This means the application entry-point needs to be a _`static Main()`_ method. The main method uses the _`LambdaBootstrapBuilder`_ class that comes from the _`Amazon.Lambda.RuntimeSupport`_ Nuget package. The _`.Create`_ method bootstraps the Lambda runtime, passing in the actual FunctionHandler method as well as a serializer to use. The _`.RunAsync()`_ method makes the function ready to receive requests.
 
 ```c# Function.cs focus=10:16
 using Amazon.Lambda.Core;
@@ -78,7 +78,9 @@ public partial class LambdaFunctionJsonSerializerContext : JsonSerializerContext
 
 ## (De)Serialization
 
-As mentioned earlier, native AOT removes the support for using common (de)seraizliation libraries. In .NET 6, Microsoft introduced [source generated serializers](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-source-generator/). Source generated serialization generates the code required for (de)serailization at compile. To use source generated serializers you need to specify a partial class that inherits from the _`JsonSerializerContext`_ class. Annotations are then added to that class to define which objects to generate compile time code for. In this instance, this is just a string. All objects you need to (de)seriailize need to be added as an annotation, including any Lambda event sources like _`SQSEvent`_ or _`APIGatewayHttpApiV2ProxyRequest`_.
+As mentioned earlier, native AOT removes the support for using common JSON (de)seraizliation libraries. In .NET 6, Microsoft introduced [source generated serializers](https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-source-generator/). Source generated serialization generates the code required for (de)serailization at compile time. 
+
+To use source generated serializers you need to specify a partial class that inherits from the _`JsonSerializerContext`_ class. Annotations are then added to that class to define which objects to generate compile time code for. In this instance, this is just a string. All objects you need to (de)seriailize need to be added as an annotation, including any Lambda event sources like _`SQSEvent`_ or _`APIGatewayHttpApiV2ProxyRequest`_.
 
 ```c# Function.cs focus=24:27
 using Amazon.Lambda.Core;
@@ -115,7 +117,9 @@ public partial class LambdaFunctionJsonSerializerContext : JsonSerializerContext
 
 ## Project File Updates
 
-Updates are required to the csproj file to enable both native AOT and allow the code to run on AWS Lambda. The first is to set the _`TargetFramework`_ to _`net7.0`_. Native AOT on Lambda makes use of [Lambda custom runtimes](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). Custom runtimes allow you to bring your own runtime to Lambda. When using a custom runtime the Lambda service looks for a file named _`bootstrap`_. For that reason, the compiled assembly name needs to be output with the name bootstrap. The final change is to set the _`PublishAot`_ flag to true.
+Updates are required to the csproj file to enable both native AOT and allow the code to run on AWS Lambda. The first is to set the _`TargetFramework`_ to _`net7.0`_.
+
+Native AOT on Lambda makes use of [Lambda custom runtimes](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html). Custom runtimes allow you to bring your own runtime to Lambda. When using a custom runtime the Lambda service looks for a file named _`bootstrap`_. For that reason, the compiled assembly name needs to be output with the name bootstrap. The final change is to set the _`PublishAot`_ flag to true.
 
 ```xml Function.cs focus=4:6
 <Project Sdk="Microsoft.NET.Sdk">
