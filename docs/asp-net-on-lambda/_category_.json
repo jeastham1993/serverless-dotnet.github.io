@@ -1,0 +1,8 @@
+{
+  "label": "ASP.NET on Lambda",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to run ASP.NET applications on AWS Lambda."
+  }
+}
