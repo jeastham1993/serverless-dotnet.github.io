@@ -3,7 +3,7 @@ sidebar_position: 1
 title: AWS SAM
 ---
 
-The AWS Serverless Application Model (SAM) is a framework for building serverless applications. AWS SAM is split into two parts, a shorthand syntax that adds additional resources on top of CloudFormation and a command line interface (CLI).
+The [AWS Serverless Application Model (SAM)](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) is a framework for building serverless applications. AWS SAM is split into two parts, a shorthand syntax that adds additional resources on top of CloudFormation and a command line interface (CLI).
 
 ## AWS SAM Template
 
