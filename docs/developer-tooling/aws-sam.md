@@ -59,6 +59,58 @@ Resources:
 
 ---
 
+## Native AOT support
+
+AWS SAM also provides support for compiling .NET 7 applications with native AOT. To do that, add an additional metadata property to the Lambda function definition and ensure the _`Runtime`_ is set to _`provided.al2`_. Adding this additional metadata property tells SAM to use the _`Amazon.Lambda.Tools`_ global CLI. For more information on native AOT, check out [this walkthrough](./docs/advanced/native-aot).
+
+```yaml template.yml  focus=18:19
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    MemorySize: 1024
+    Architectures: [x86_64]
+    Runtime: provided.al2
+    Timeout: 30
+    Tracing: Active
+    Environment:
+      Variables:
+        PRODUCT_TABLE_NAME: !Ref Table
+
+Resources:
+  GetProductsFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: dotnet7
+    Properties:
+      CodeUri: ./GetProducts/
+      Handler: GetProducts::GetProducts.Function::FunctionHandler
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: GET
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref DynamoDbTable
+
+  DynamoDbTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+```
+
+---
+
 ## Function
 
 Lambda functions are specified using a resource of type _`AWS::Serverless::Function`_. There are 8 supported resources that can be found in the [AWS Docs](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-generated-resources.html).  The _`CodeUri`_ property tells the SAM CLI which folder the code for this function is stored under.
