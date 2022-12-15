@@ -63,7 +63,7 @@ Resources:
 
 AWS SAM also provides support for compiling .NET 7 applications with native AOT. To do that, add an additional metadata property to the Lambda function definition and ensure the _`Runtime`_ is set to _`provided.al2`_. Adding this additional metadata property tells SAM to use the _`Amazon.Lambda.Tools`_ global CLI. For more information on native AOT, check out [this walkthrough](./docs/advanced/native-aot).
 
-```yaml template.yml  focus=18:19
+```yaml template.yml  focus=8:8,18:19
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 
