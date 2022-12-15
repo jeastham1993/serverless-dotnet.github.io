@@ -152,11 +152,11 @@ Native AOT on Lambda makes use of [Lambda custom runtimes](https://docs.aws.amaz
 
 ---
 
-## Runtime Directives
+## Trimming Options
 
-Native AOT compilation trims your application code, making the bundle size as small as possible. Many Nuget libraries are not yet 'trim friendly', meaning required pieces of code may be removed. Microsoft provide a way to exclude libraries from trimming using [runtime directives](https://learn.microsoft.com/en-us/windows/uwp/dotnet-native/runtime-directives-rd-xml-configuration-file-reference). A runtime directives (.rd.xml) file is an XML configuration file that specifies whether designated program elements are available for reflection.
+Native AOT compilation trims your application code, making the bundle size as small as possible. Many Nuget libraries are not yet 'trim friendly', meaning required pieces of code may be removed. Microsoft provide a way to exclude libraries from trimming using the [trimming options](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trimming-options?pivots=dotnet-7-0) built into the compiler. To exclude an assembly from the trimming, specify it as a _`<TrimmerRootAssembly>`_.
 
-```xml Function.cs focus=22:24
+```xml Function.cs focus=23:31
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -178,26 +178,17 @@ Native AOT compilation trims your application code, making the bundle size as sm
     <PackageReference Include="Amazon.Lambda.Core" Version="2.1.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.3.0" />
   </ItemGroup>
+  
   <ItemGroup>
-    <RdXmlFile Include="rd.xml" />
+    <TrimmerRootAssembly Include="AWSSDK.Core" />
+    <TrimmerRootAssembly Include="AWSSDK.DynamoDBv2" />
+    <TrimmerRootAssembly Include="AWSXRayRecorder.Core" />
+    <TrimmerRootAssembly Include="AWSXRayRecorder.Handlers.AwsSdk" />
+    <TrimmerRootAssembly Include="Shared" />
+    <TrimmerRootAssembly Include="Amazon.Lambda.AspNetCoreServer.Hosting" />
+    <TrimmerRootAssembly Include="Amazon.Lambda.AspNetCoreServer" />
   </ItemGroup>
 </Project>
-
-```
-
----
-
-## Runtime Directive Files
-
-Within the rd.xml file indivdual assemblies can be excluded from trimming. In this example, the only library excluded is our application itself. If you are using any of the AWS SDK or event source libraries they will need to be added to this file.
-
-```xml Function.cs
-<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
-  <Application>
-    <Assembly Name="bootstrap" Dynamic="Required All">
-    </Assembly>
-  </Application>
-</Directives>
 
 ```
 
