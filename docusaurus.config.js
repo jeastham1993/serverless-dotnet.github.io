@@ -113,6 +113,10 @@ const config = {
                 label: '@plantpowerjames',
                 to: 'https://twitter.com/plantpowerjames',
               },
+              {
+                label: 'Report Issues on GitHub',
+                to: 'https://github.com/jeastham1993/serverless-dotnet.github.io',
+              },
             ],
           },
         ],
