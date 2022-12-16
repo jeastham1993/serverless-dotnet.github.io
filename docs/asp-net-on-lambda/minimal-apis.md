@@ -11,7 +11,7 @@ To demonstrate how to run an ASP.NET minimal API on AWS Lambda let's start with 
 
 To create a new minimal API run the below command:
 
-```bash new-project
+```shellscript new-project
 dotnet new webapi -minimal --no-https --no-openapi -n MinimalApi.OnLambda
 ```
 
@@ -57,7 +57,7 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 
 AWS provides a Nuget package that makes it simple to run ASP.NET on Lambda. In fact, for minimal API's you can do that by adding a single line of code to the application. To start, let's add the Nuget package. Navigate to the folder containing the created _`.csproj`_ file and run:
 
-```bash add-package
+```shellscript add-package
 dotnet add package Amazon.Lambda.AspNetCoreServer.Hosting
 ```
 

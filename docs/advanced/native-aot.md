@@ -17,13 +17,13 @@ Let's dive into how you can run native AOT applications on AWS Lambda.
 
 AWS announched tooling to support to make it easier to build and deploy native AOT applications to Lambda. This tooling makes use of [Docker](https://www.docker.com/), ensure you have Docker running on your system. Also ensure you have version 5.6.0 or later of the [Amazon.Lambda.Tools](https://www.nuget.org/packages/Amazon.Lambda.Tools).
 
-```bash install-tools
+```shellscript install-tools
 dotnet tool install --global Amazon.Lambda.Tools
 ```
 
 AWS also announched pre-built templates to quickly get started with native AOT. Ensure you have the latest version of the [Amazon.Lambda.Templates](https://www.nuget.org/packages/Amazon.Lambda.Templates).
 
-```bash install-tools
+```shellscript install-tools
 dotnet new --install Amazon.Lambda.Templates
 ```
 
@@ -31,7 +31,7 @@ dotnet new --install Amazon.Lambda.Templates
 
 To get started with your first native AOT Lambda function run the following command to start a new project:
 
-```bash new-native-aot
+```shellscript new-native-aot
 dotnet new lambda.NativeAOT -n LambdaNativeAot
 ```
 
@@ -200,6 +200,6 @@ Native AOT compilation trims your application code, making the bundle size as sm
 
 When ready to deploy, it's as simple as using the _`deploy-function`_ command in the CLI global tooling. This command downloads a Docker image built using Amazon Linux 2 (AL2) as a base image. Your local file system is then attached to a running container, your code is compiled within this container. If the deploy-function comamnd is executed on a machine running AL2 then the publish will run as normal.
 
-```bash deploy.sh
+```shellscript deploy.sh
 dotnet lambda deploy-function
 ```

@@ -11,7 +11,7 @@ In this pattern, we will walk through how to trigger AWS Lambda from an API call
 
 ## Packages Required
 
-```bash install
+```shellscript install
 dotnet add package Amazon.Lambda.APIGatewayEvents
 ```
 

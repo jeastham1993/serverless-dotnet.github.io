@@ -9,7 +9,7 @@ keywords: [dotnet cli]
 
 Ok, now it's actually time to deploy. I promise! Now that we have configured our Lambda function, deploying it is as simple as running a single command in your terminal window. Ensure you are in the same directory as the _`MyFirstLambda.csproj`_ file at this point.
 
-```bash deploy
+```shellscript deploy
 dotnet lambda deploy-function
 ```
 
@@ -21,13 +21,13 @@ During the deployment wizard you will be asked to select an IAM role. At this st
 
 Now that we have a Lambda function running in the cloud we can even invoke it right from our terminal window. Run the below command, substituing in the `LAMBDA_FUNCTION_NAME` placeholder with the name chosen in the deploy step.
 
-```bash
+```shellscript
 dotnet lambda invoke-function LAMBDA_FUNCTION_NAME -p hello, world!
 ```
 
 The response back from the command will give you something along the lines of
 
-```bash
+```shellscript
 Amazon Lambda Tools for .NET Core applications (5.6.1)
 Project Home: https://github.com/aws/aws-extensions-for-dotnet-cli, https://github.com/aws/aws-lambda-dotnet
 

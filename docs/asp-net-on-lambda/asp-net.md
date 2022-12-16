@@ -11,7 +11,7 @@ It's possible to run a traditional ASP.NET on AWS Lambda without changing a sing
 
 To demonstrate how to run do this, let's start with a brand new project. Yes, I know .NET Core 3.1 is out of support! This is the only way to generate a new project that still includes a _`Startup.cs`_ file.
 
-```bash new-project
+```shellscript new-project
 dotnet new webapi -f netcoreapp3.1 -n WebApi.OnLambda
 ```
 
@@ -37,7 +37,7 @@ The first thing to do is bump the _`TargetFramework`_ to be net6.0. You can do t
 
 The next step to enable Lambda support is to install the _`Amazon.Lambda.AspNetCoreServer`_ Nuget package. This package provides classes and functionality to proxy the event payload passed to Lambda into a format that ASP.NET can understand
 
-```bash nuget-install
+```shellscript nuget-install
 dotnet add package Amazon.Lambda.AspNetCoreServer
 ```
 

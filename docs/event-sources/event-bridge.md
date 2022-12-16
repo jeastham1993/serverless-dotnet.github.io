@@ -13,7 +13,7 @@ In this pattern, we will walk through how to trigger AWS Lambda from an event in
 
 *If you're confused about why the package is called CloudWatchEvents, EventBridge used to be part of CloudWatch and was broken out into it's own service.*
 
-```bash install
+```shellscript install
 dotnet add package Amazon.Lambda.CloudWatchEvents
 ```
 

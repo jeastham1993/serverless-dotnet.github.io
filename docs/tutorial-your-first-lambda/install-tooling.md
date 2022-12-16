@@ -13,7 +13,7 @@ AWS provides a range of tools to help enable the development of serverless appli
 
 The [Amazon.Lambda.Tools](https://www.nuget.org/packages/Amazon.Lambda.Tools) .NET CLI tool adds a range of features to the .NET CLI to simplify building serverless applications on AWS.
 
-```bash install
+```shellscript install
 dotnet tool install --global Amazon.Lambda.Tools
 ```
 
@@ -21,6 +21,6 @@ dotnet tool install --global Amazon.Lambda.Tools
 
 The [Amazon.Lambda.Templates](https://www.nuget.org/packages/Amazon.Lambda.Templates) Nuget package adds templates to the Microsoft Template Engine that are then accessible through the .NET CLI/
 
-```bash install
+```shellscript install
 dotnet new --install Amazon.Lambda.Templates
 ```

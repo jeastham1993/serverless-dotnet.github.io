@@ -9,7 +9,7 @@ keywords: [dotnet cli]
 
 Now it's time to create your first Lambda function. You can use the dotnet new command to create a new application from a range of available templates. For this example, we will create an empty Lambda function.
 
-```bash dotnet-new
+```shellscript dotnet-new
 dotnet new lambda.EmptyFunction -n MyFirstLambda
 ```
 
