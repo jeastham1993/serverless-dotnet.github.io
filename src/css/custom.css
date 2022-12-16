@@ -28,6 +28,12 @@
   --ifm-color-primary-lightest: rgb(116 85 221);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.ch-editor-frame{
+  height: 100%!important;
+  max-height: 100%!important;
+}
+
 @media (min-width: 1440px)
 {
   .container {
